@@ -1,0 +1,65 @@
+<head>
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+	<title>Information Retriveal</title>
+</head>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+	<h1>Information Retriveal</h1>
+
+<form action="" method="post" novalidate>
+	{{ form.hidden_tag() }}
+	<p>
+		{{form.keywords.label}}<br>
+		{{form.keywords(size=32)}}
+		{% for error in form.keywords.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+	</p>
+	<p>
+		{{form.attributes.label}}<br>
+		{{form.attributes(size=32)}}
+		{% for error in form.attributes.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+	</p>
+	<p>
+		{{form.length.label}}<br>
+		{{form.length(size=4)}}
+		{% for error in form.length.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+	</p>
+	<p>
+		{{form.merge.label}}<br>
+		{{form.merge()}}
+	</p>
+	<p>{{form.submit()}}</p>
+</form>
+    </div>
+    <div class="col-sm">
+<h2>Results</h2>
+<table border=1>
+	<tr>
+		<th>Index</th>
+		<th>Word</th>
+		<th>Score</th>
+		<th>Attribute</th>
+		<th>Length</th>
+	</tr>
+{% for data in result.data %}
+	<tr>
+		<td>{{data.index}}</td>
+		<td>{{data.name}}</td>
+		<td>{{data.score}}</td>
+		<td>{{data.attr}}</td>
+		<td>{{data.length}}</td>
+	</tr>
+{%endfor%}
+</table>
+    </div>
+  </div>
+</div>
+
+
